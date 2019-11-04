@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-my $last_start = 3000;
+my $last_start = 2947;
 my $last_run = 4980;
 my @ends;   # the ends array is sorted from large to small
 my %mapfiles;

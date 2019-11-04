@@ -6,7 +6,7 @@
 #   2. may need to add more check conditions
 ##########
 
-function check_file_existance {
+check_file_existance() {
     while [ $# -gt 0 ]; do
 	if [ -d "$1" ]; then
 	    echo "$1 is a dir. please check it, abort execution."
@@ -16,11 +16,11 @@ function check_file_existance {
 	if [ -f "$1" ]; then
 	    read -p "file $1 already exist, do you want to remove it? [yn] " yesno 
 	    case $yesno in
-		[yY*])
+		[yY]*)
 		    echo "removing $1 now..."
 		    rm -f "$1"
 		    ;;
-		[nN*])
+		[nN]*)
 		    echo "You don't want to remove $1, abort execution"
 		    exit 2
 		    ;;
@@ -59,19 +59,22 @@ ls prexCH*eventcuts.*.map | cut -d'.' -f2 | perl split_runs.pl |  while read sta
             continue
         fi
     fi
-    TEMP="$start_run-$end_run.tmp" # check tmp file existance
-    check_file_existance "$TEMP"
+    # TEMP="$start_run-$end_run.tmp" # check tmp file existance
+    TEMP=${mapfile#*.}
+    # check_file_existance "$TEMP"
     # remove comment and blank lines; also remove comma
-    cat $mapfile    \
-	| grep -v '^\s*$'	\
-	| grep -v '^\s*!'	\
-	| grep -v 'EVENTCUT'	\
-	| sed 's/,//g; s/\s\+/ /g'  \
-	| sed 's/^\s*//g'   > $TEMP
+    if ! [ -f "$TEMP" ]; then
+	cat $mapfile    \
+	    | grep -v '^\s*$'	\
+	    | grep -v '^\s*!'	\
+	    | grep -v 'EVENTCUT'	\
+	    | sed 's/,//g; s/\s\+/ /g'  \
+	    | sed 's/^\s*//g'   > "$TEMP"
+    fi
     # check_error $mapfile $TEMP
     # assume no error (repeating) after checking error
     awk -v start_run=$start_run -v end_run=$end_run -v mapfile=$mapfile -v output=$OUTPUT -f extract_cut.awk -- $TEMP
-    rm $TEMP
+    # rm $TEMP
 done
 
 # good runs
@@ -79,7 +82,8 @@ done
 
 # make tree
 ROOTFILE="run_cuts.root"
-check_file_existance "$ROOTFILE"
+TXTFILE="run_cuts.txt"
+check_file_existance "$ROOTFILE" "$TXTFILE"
 root -l make_tree.C <<END
 .q
 END

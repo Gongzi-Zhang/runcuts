@@ -1,7 +1,20 @@
-* prexCH_beamline_eventcuts.3403-3404.map
-    3403-3404 are good runs, but due to run bcm cut setting (bcm_dg_ds3), all bcm cut value are -1 now
+* run 4396: normalized_lower_limit: 60 
+
 * add legend to double_var plots
-* bpm each channel stability, burplevel
+
+# observation
+* no burplevel cut for bcm
+* bcm_dg_us.flag:run	bcm_dg_us never used for cut
+* bcm stability: normalized_stability, bcm_an_ds.stability and bcm_an_ds3.stability: the usual value being 1.4, 
+  for some runs before ~3600, it is set to be 0.8
+
+bpm:
+* for 70 runs (<= 3447), the bpm4a_ym.lower_limit == 10000
+* bpm4a_absx.lower_limit (3540-3542, 3455, 3524, 3540): a few runs has lower_limit as -10 (normal value being -200)
+  bpm4a_absy.lower_limit (3540-3542, 3455, 3524, 3540): a few runs has lower_limit as -10 (normal value being -200)
+and bpm4a_absy.lower_limit: a few runs has lower_limit ~ -10 (normal value being -200)
+* bpm4a_effectivecharge 
+    3450-3452, 3455, 3489, 3524, 3540: has lower_limit as 0 (others not set)
 
 #  Overview
 This small analysis program is composed of a few scripts:
@@ -43,6 +56,9 @@ This small analysis program is composed of a few scripts:
 # cuts.csv
 * begin_run	end_run	    mapfile	5 bcms x 6 cut/bcm	normalized_bcm	    normalized_lower_limit	normalized_upper_limit	    normalized_stability    normalized_burplevel    4 bpms x 7 channels/bpm x 6 cuts/channel
 *   1		  2	       3	    4 - 33		    34			    35				36			37			    38				39 - 206
+# run_cuts.txt
+* run	slug	mapfile	    5 bcms x 6 cut/bcm	normalized_bcm	    normalized_lower_limit	normalized_upper_limit	    normalized_stability    normalized_burplevel    4 bpms x 7 channels/bpm x 6 cuts/channel
+* 1	 2	   3		4 - 33		    34			    35				36			37			    38				39 - 206
 
 # Miscellaneous
 * if you want to make any change, please make a copy and then do it in your version

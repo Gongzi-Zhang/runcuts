@@ -1,24 +1,14 @@
 removing cuts.csv now...
 Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3140.map
 Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3146.map
-Error: New bcm not listed:  bcm_dg_ds3 in mapfile:  prexCH_beamline_eventcuts.3403-3404.map
-Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3420.map
-Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3424.map
-Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3429.map
-Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3430.map
 Error: find the same value cut set for different BPM abs channels in mapfile: prexCH_beamline_eventcuts.3450-3452.map 
 	 -10 10 g 0.02 0
-Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3453-.map
 Error: find the same value cut set for different BPM abs channels in mapfile: prexCH_beamline_eventcuts.3455.map 
 	 -10 10 g 0.02 0
 Error: find the same value cut set for different BPM abs channels in mapfile: prexCH_beamline_eventcuts.3524.map 
 	 -10 10 g 0.02 0
 Error: find the same value cut set for different BPM abs channels in mapfile: prexCH_beamline_eventcuts.3540.map 
 	 -10 10 g 0.02 0
-Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3548.map
-Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3566-.map
-Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3583-.map
-Error: Repeated cut for bpm4a_ym in mapfile: prexCH_beamline_eventcuts.3595-.map
 Error: find the same value cut set for different BPM abs channels in mapfile: prexCH_beamline_eventcuts.3912-.map 
 	 -200 200 g 0 0.2
 Error: find the same value cut set for different BPM abs channels in mapfile: prexCH_beamline_eventcuts.4169.map 
@@ -56,7 +46,4 @@ Error: find the same value cut set for different BPM abs channels in mapfile: pr
 	 -200 200 g 0.25 0.35
 Error: find the same value cut set for different BPM abs channels in mapfile: prexCH_beamline_eventcuts.4940-4970.map 
 	 -200 200 g 0.35 0.35
-removing run_cuts.root now...
-
-Processing make_tree.C...
-1129 entries have been recorded
+You don't want to remove run_cuts.root, abort execution

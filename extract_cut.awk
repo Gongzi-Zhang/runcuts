@@ -109,8 +109,8 @@ $1 ~ /bcm/{
 	    if ($7) normalized["burplevel"] = $7
 	}
     } 
-    if ($6) cut[$2, "stability"] = $6
-    if ($7) cut[$2, "burplevel"] = $7
+    if (NF > 5) cut[$2, "stability"] = $6
+    if (NF > 6) cut[$2, "burplevel"] = $7
 }
 
 $1 ~ /bpmstripline/{
@@ -158,7 +158,7 @@ $1 ~ /bpmstripline/{
     cut[$2, $3, "lower_limit"] = $4
     cut[$2, $3, "upper_limit"] = $5
 
-    if ($6) {
+    if (NF > 5) {
 	if ($6 !~ /[gl]/) {
 	    print "In mapfile:", mapfile, "find wrong cut setting in line:\n\t\t", $0
 	    cut[$2, $3, "local_global"] = 2
@@ -166,8 +166,8 @@ $1 ~ /bpmstripline/{
 	    cut[$2, $3, "local_global"] = $6 == "g" ? 1 : 0
 	}
     }
-    if ($7) cut[$2, $3, "stability"] = $7
-    if ($8) cut[$2, $3, "burplevel"] = $8
+    if (NF > 6) cut[$2, $3, "stability"] = $7
+    if (NF > 7) cut[$2, $3, "burplevel"] = $8
 }
 
 END{

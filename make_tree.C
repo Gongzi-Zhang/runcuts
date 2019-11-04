@@ -12,6 +12,11 @@ void make_tree(const char *input = "cuts.csv", const char *output = "run_cuts.ro
       cerr << "Error: can't open input file, please check it:\t" << input << endl;
       exit(1);
     }
+    ofstream ftxt_out("run_cuts.txt", std::ofstream::out);
+    if (! ftxt_out.is_open()) {
+	cerr << "Error: can't open output file: run_cuts.txt, please check it!";
+	exit(1);
+    }
     ifstream fin_good_runs("good_runs.list", std::ifstream::in);
     if (! fin_good_runs.is_open()) {
       cerr << "Error: can't open good_runs file: good_runs.list please check it:\t" << endl;
@@ -93,6 +98,22 @@ void make_tree(const char *input = "cuts.csv", const char *output = "run_cuts.ro
 
       while(run <= end_run) {
         t->Fill();
+	ftxt_out << run << "\t" << slug << "\t" << mapfile << "\t";
+	for(int i=0; i<nbcm; i++) {
+	  for (int j=0; j<nbcm_cut; j++) {
+	    ftxt_out << bcm_cut_values[i][j] << "\t";
+	  }
+	}
+	ftxt_out <<  normalized_bcm_name << "\t" <<  normalized_lower_limit << "\t" 
+	    <<  normalized_upper_limit << "\t" <<  normalized_stability << "\t" <<  normalized_burplevel << "\t";
+        for(int i=0; i<nbpm; i++) {
+          for (int j=0; j<nbpm_channel; j++) {
+            for (int k=0; k<nbpm_cut; k++) {
+              ftxt_out << bpm_cut_values[i][j][k] << "\t";
+            }
+          }
+        }
+	ftxt_out << endl;
         if (fin_good_runs >> run >> slug)
           ;
         else 
